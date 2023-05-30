@@ -47,6 +47,7 @@
             hoverColor="hover:bg-gray-200"
             text="Google apps"
           />
+          <UserComponent/>
         </div>
       </div>
     </div>
@@ -55,6 +56,7 @@
 
 <script setup>
 import IconComponent from "../../components/IconComponent.vue";
+import UserComponent from "../../components/UserComponent.vue";
 </script>
 <style scoped>
 .logo-section {
