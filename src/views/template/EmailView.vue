@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="flex w-full">
+    <div class="flex w-full justify-between">
       <div id="SideMenu" class="side-menu">
         <div
           class="flex items-center justify-center bg-sky-200 w-36 h-8 mt-2 rounded-2xl ml-2 p-7 cursor-pointer"
@@ -96,6 +96,25 @@
             <div class="text-sm pl-4">Drafts</div>
           </div>
         </div>
+        <!--this is where the page changes-->
+        <router-view />
+        <!--this is where the page changes-->
+      </div>
+      <div class="m-4">
+        <div class="w-6 h-6 flex justify-center mb-7">
+          <img class="object-center" src="img/GoogleCalendar.png" />
+        </div>
+        <div class="w-6 h-6 flex justify-center mb-7">
+          <img class="object-center" src="img/GoogleKeep.png" />
+        </div>
+        <div class="w-6 h-6 flex justify-center mb-7">
+          <img class="object-center" src="img/GoogleTasks.png" />
+        </div>
+        <div class="w-6 h-6 flex justify-center mb-7">
+          <img class="object-center" src="img/GoogleContacts.png" />
+        </div>
+        <div class="w-6 mb-7 border border-gray-300"></div>
+        <div class="w-6 h-6 flex justify-center mb-7"><PlusIcon /></div>
       </div>
     </div>
   </div>
@@ -110,6 +129,7 @@ import InboxIcon from "vue-material-design-icons/Inbox.vue";
 import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import StarOutlineIcon from "vue-material-design-icons/StarOutline.vue";
 import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
+import PlusIcon from "vue-material-design-icons/Plus.vue";
 </script>
 <style scoped>
 .logo-section {
