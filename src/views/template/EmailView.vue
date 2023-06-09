@@ -13,7 +13,9 @@
         <img src="../../../public/img/GmailLogo.png" width="110" />
       </div>
       <div class="flex w-full justify-between">
-        <div class="w-full bg-gray-200 flex items-center p-1 px-2 rounded-lg">
+        <div
+          class="input-width w-full bg-gray-200 flex items-center p-1 px-2 rounded-lg"
+        >
           <IconComponent
             iconString="magnify"
             iconColor="#636363"
@@ -40,14 +42,59 @@
             :iconSize="19"
             hoverColor="hover:bg-gray-200"
             text="Settings"
-          /><IconComponent
+          />
+          <IconComponent
             iconString="apps"
             iconColor="#636363"
             :iconSize="19"
             hoverColor="hover:bg-gray-200"
             text="Google apps"
           />
-          <UserComponent/>
+          <UserComponent />
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full">
+      <div id="SideMenu" class="side-menu">
+        <div
+          class="flex items-center justify-center bg-sky-200 w-36 h-8 mt-2 rounded-2xl ml-2 p-7 cursor-pointer"
+        >
+          <PencilOutlineIcon :size="25" class="mr-4" />
+          <span class="text-sm">Compose</span>
+        </div>
+        <div class="my-5"></div>
+        <div
+          class="flex justify-between px-6 py-1.5 bg-blue-100 rounded-r-full side-menu-item"
+        >
+          <div class="flex items-center">
+            <InboxIcon :size="17" />
+            <div class="text-sm pl-4 font-semibold">Inbox</div>
+          </div>
+          <div class="text-xs font-semibold">26</div>
+        </div>
+        <div class="flex justify-between px-6 py-1.5">
+          <div class="flex items-center">
+            <StarOutlineIcon :size="17" />
+            <div class="text-sm pl-4">Starred</div>
+          </div>
+        </div>
+        <div class="flex justify-between px-6 py-1.5">
+          <div class="flex items-center">
+            <ClockOutlineIcon :size="17" />
+            <div class="text-sm pl-4">Snoozed</div>
+          </div>
+        </div>
+        <div class="flex justify-between px-6 py-1.5">
+          <div class="flex items-center">
+            <SendOutlineIcon :size="17" />
+            <div class="text-sm pl-4">Sent</div>
+          </div>
+        </div>
+        <div class="flex justify-between px-6 py-1.5">
+          <div class="flex items-center">
+            <FileOutlineIcon :size="17" />
+            <div class="text-sm pl-4">Drafts</div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,9 +104,25 @@
 <script setup>
 import IconComponent from "../../components/IconComponent.vue";
 import UserComponent from "../../components/UserComponent.vue";
+import PencilOutlineIcon from "vue-material-design-icons/PencilOutline.vue";
+import FileOutlineIcon from "vue-material-design-icons/FileOutline.vue";
+import InboxIcon from "vue-material-design-icons/Inbox.vue";
+import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
+import StarOutlineIcon from "vue-material-design-icons/StarOutline.vue";
+import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
 </script>
 <style scoped>
 .logo-section {
   min-width: 250px;
+}
+
+.input-width {
+  max-width: 700px;
+}
+.side-menu-item {
+  width: 250px;
+}
+.side-menu {
+  width: 300px;
 }
 </style>
