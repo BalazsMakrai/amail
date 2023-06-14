@@ -13,7 +13,7 @@
         <img src="../../../public/img/GmailLogo.png" width="110" />
       </div>
       <div class="flex w-full justify-between">
-        <div
+          <div
           class="input-width w-full bg-gray-200 flex items-center p-1 px-2 rounded-lg"
         >
           <IconComponent
@@ -96,7 +96,10 @@
             <div class="text-sm pl-4">Drafts</div>
           </div>
         </div>
-        <!--this is where the page changes-->
+       
+      </div>
+      <div class="w-full">
+         <!--this is where the page changes-->
         <router-view />
         <!--this is where the page changes-->
       </div>
