@@ -1,5 +1,5 @@
 <template>
-  <div id="MessageRow" class="hello">
+  <div id="MessageRow">
     <div
       class="border-b hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x cursor-pointer"
     >
@@ -13,7 +13,7 @@
           <StarOutlineIcon class="ml-4" :size="19" fillcolor="#636363" />
         </div>
         <div class="flex items-center w-full">
-          <router-link to="email/meassage" class="w-full">
+          <router-link to="email/message" class="w-full">
             <div class="flex items-center justify-between">
               <div class="flex items-center w-full">
                 <div class="text-sm ml-4 font-semibold truncate-from">

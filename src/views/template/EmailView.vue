@@ -13,7 +13,7 @@
         <img src="../../../public/img/GmailLogo.png" width="110" />
       </div>
       <div class="flex w-full justify-between">
-          <div
+        <div
           class="input-width w-full bg-gray-200 flex items-center p-1 px-2 rounded-lg"
         >
           <IconComponent
@@ -56,22 +56,25 @@
     </div>
     <div class="flex w-full justify-between">
       <div id="SideMenu" class="side-menu">
-        <div @click="newMessageOpen=!newMessageOpen"
+        <div
+          @click="newMessageOpen = !newMessageOpen"
           class="flex items-center justify-center bg-sky-200 w-36 h-8 mt-2 rounded-2xl ml-2 p-7 cursor-pointer"
         >
           <PencilOutlineIcon :size="25" class="mr-4" />
           <span class="text-sm">Compose</span>
         </div>
         <div class="my-5"></div>
-        <div
-          class="flex justify-between px-6 py-1.5 bg-blue-100 rounded-r-full side-menu-item"
+        <router-link to="/email">
+          <div
+            class="flex justify-between px-6 py-1.5 bg-blue-100 rounded-r-full side-menu-item"
+          >
+            <div class="flex items-center">
+              <InboxIcon :size="17" />
+              <div class="text-sm pl-4 font-semibold">Inbox</div>
+            </div>
+            <div class="text-xs font-semibold">26</div>
+          </div></router-link
         >
-          <div class="flex items-center">
-            <InboxIcon :size="17" />
-            <div class="text-sm pl-4 font-semibold">Inbox</div>
-          </div>
-          <div class="text-xs font-semibold">26</div>
-        </div>
         <div class="flex justify-between px-6 py-1.5">
           <div class="flex items-center">
             <StarOutlineIcon :size="17" />
@@ -96,10 +99,9 @@
             <div class="text-sm pl-4">Drafts</div>
           </div>
         </div>
-       
       </div>
       <div class="w-full">
-         <!--this is where the page changes-->
+        <!--this is where the page changes-->
         <router-view />
         <!--this is where the page changes-->
       </div>
@@ -123,14 +125,19 @@
       </div>
     </div>
     <div
-      id="NewMessageSection" v-if="newMessageOpen"
+      id="NewMessageSection"
+      v-if="newMessageOpen"
       class="absolute bottom-0 right-0 mr-20 rounded-t-lg shadow-2xl bg-white"
     >
       <div
         class="flex items-center justify-between rounded-t-lg w-full text-sm px-3.5 py-2.5 bg-gray-200"
       >
         <div>New Message</div>
-        <CloseIcon @click="newMessageOpen=false" class="cursor-pointer" :size="19" />
+        <CloseIcon
+          @click="newMessageOpen = false"
+          class="cursor-pointer"
+          :size="19"
+        />
       </div>
       <div>
         <div class="relative flex items-center px-3.5 py-2">
@@ -181,7 +188,7 @@ import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
 import PlusIcon from "vue-material-design-icons/Plus.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 
-let newMessageOpen=ref(false);
+let newMessageOpen = ref(false);
 </script>
 <style scoped>
 .logo-section {
