@@ -1,20 +1,23 @@
 <template>
-    <div id="LoginView" class="grid h-screen place-items-center">
-<div>
-    <img width="280" src="img/GmailLogin.png" >
-    <div class="flex justify-center">
-        <GoogleLogin :callback="callback"/>
+  <div id="LoginView" class="grid h-screen place-items-center">
+    <div>
+      <img width="280" src="img/GmailLogin.png" />
+      <div class="flex justify-center mt-5">
+        <GoogleLogin :callback="callback" />
+      </div>
     </div>
-</div>
-    </div>
+  </div>
 </template>
 
 <script setup>
-const callback=(response)=>{
-    console.log(response);
-}
+import axios from "axios";
+
+const callback = async (response) => {
+  let res = await axios.post("http://localhost:4001/api/google-login", {
+    token: response.credential,
+  });
+  console.log(res);
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -16,6 +16,6 @@ app.use(pinia);
 app.use(router);
 app.use(vue3GoogleLogin, {
   clientId:
-    "727433717566-q8ot8bnoi37g8hsvgts93qdr5i2br0ao.apps.googleusercontent.com",
+    "46316142125-qdhr59ohigl4uiefipdq1hjiq7jf3qd7.apps.googleusercontent.com",
 });
 app.mount("#app");
