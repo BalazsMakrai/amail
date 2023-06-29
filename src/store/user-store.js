@@ -9,6 +9,8 @@ import {
   collection,
   doc,
   setDoc,
+  deleteDoc,
+  getDoc,
 } from "firebase/firestore";
 axios.defaults.baseURL = "http://localhost:4001/";
 export const useUserStore = defineStore("user", {
@@ -42,7 +44,7 @@ export const useUserStore = defineStore("user", {
     getEmailsByEmailAddress() {
       const q = query(
         collection(db, "emails"),
-        where("toEmail", "==", "john.doe@mail.com")
+        where("toEmail", "==", this.$state.email)
       );
       onSnapshot(
         q,
@@ -58,7 +60,7 @@ export const useUserStore = defineStore("user", {
               subject: doc.data().subject,
               body: doc.data().body,
               hasViewed: doc.data().hasViewed,
-              createdAt: doc.data().createdAt,
+              //createdAt: doc.data().createdAt,
             });
           });
           this.$state.emails = resultArray;
@@ -82,6 +84,32 @@ export const useUserStore = defineStore("user", {
         });
       } catch (error) {
         console.log(error);
+      }
+    },
+    async deleteEmail(id) {
+      try {
+        await deleteDoc(doc(db, "emails", id));
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getEmailById(id) {
+      const docRef = doc(db, "emails", id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return {
+          id: id,
+          firstName: docSnap.data().firstName,
+          lastName: docSnap.data().lastName,
+          fromEmail: docSnap.data().fromEmail,
+          toEmail: docSnap.data().toEmail,
+          subject: docSnap.data().subject,
+          body: docSnap.data().body,
+          hasViewed: docSnap.data().hasViewed,
+          createdAt: docSnap.data().createdAt,
+        };
+      } else {
+        console.log("No such document!");
       }
     },
   },

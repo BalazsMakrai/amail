@@ -17,6 +17,7 @@
               />
             </router-link>
             <IconComponent
+              @click="deleteEmail(email.id)"
               class="ml-3"
               iconString="trash"
               iconColor="#636363"
@@ -28,7 +29,9 @@
           <div class="text-xs text-gray-500">1-50 of 153</div>
         </div>
       </div>
-      <div class="w-full text-xl ml-20 font-light pt-5">Subject</div>
+      <div class="w-full text-xl ml-20 font-light pt-5">
+        {{ email.subject }}
+      </div>
       <div class="w-full flex">
         <img
           class="rounded-full mt-8 mx-5 custom-img"
@@ -37,12 +40,16 @@
         <div class="w-full my-4 mx-0.5">
           <div class="font-semibold text-sm mt-4 mb-4">
             <div class="w-full flex justify-between items-center">
-              <div>john.doe@gmail.com</div>
-              <div class="mr-5 text-xs font-normal">June 20 14:15</div>
+              <div>{{ email.fromEmail }}</div>
+              <div class="mr-5 text-xs font-normal">{{ email.createdAt }}</div>
             </div>
-            <span class="text-xs text-gray-500 font-normal">to me</span>
+            <span class="text-xs text-gray-500 font-normal">{{
+              email.toEmail
+            }}</span>
           </div>
-          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, quisquam. Libero, dolores debitis reprehenderit nesciunt esse voluptate veniam, numquam atque eveniet excepturi temporibus culpa earum quia tenetur dolorem ut quasi!</div>
+          <div>
+            {{ email.body }}
+          </div>
         </div>
       </div>
     </div>
@@ -50,20 +57,43 @@
 </template>
 
 <script setup>
-//import { toRefs, defineProps } from "vue";
 import IconComponent from "@/components/IconComponent.vue";
-//import StarOutlineIcon from "vue-material-design-icons/StarOutline.vue";
-//let icon = null;
-//const props = defineProps({
-// from: String,
-//subject: String,
-//body: String,
-//time: String,
-//});
-//const { subject, from, body, time } = toRefs(props);
+import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/store/user-store";
+import { onMounted, ref } from "vue";
+const userStore = useUserStore();
+const router = useRouter();
+const route = useRoute();
+let email = ref({});
+onMounted(async () => {
+  const res = await userStore.getEmailById(route.params.id);
+  email.value = {
+    id: res.id,
+    body: res.body,
+    createdAt: res.createdAt,
+    firstName: res.firstName,
+    lastName: res.lastName,
+    subject: res.subject,
+    hasViewed: res.hasViewed,
+    toEmail: res.toEmail,
+  };
+});
+const deleteEmail = async (id) => {
+  let res = confirm("Are you sure you want to delete this?");
+  if (res) {
+    await userStore.deleteEmail(id);
+    setTimeout(() => {
+      router.push("/email");
+    }, 257);
+  }
+};
 </script>
-+
+
 <style lang="scss">
-#SingleMessageSection {.custom-img{width: 40px;height: 40px;}
+#SingleMessageSection {
+  .custom-img {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>
