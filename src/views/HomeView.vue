@@ -1,7 +1,10 @@
 <template>
-  <div id="HomeView" class="w-full bg-white ml-2 rounded-t-xl h-full shadow-sm pt-2">
-    <div class="border-b ">
-      <div class="flex items-center justify-between px-4 my-3 ">
+  <div
+    id="HomeView"
+    class="w-full bg-white ml-2 rounded-t-xl h-full shadow-sm pt-2"
+  >
+    <div class="border-b">
+      <div class="flex items-center justify-between px-4 my-3">
         <IconComponent
           class="-m-2 -ml-2.5"
           iconString="trash"
@@ -14,12 +17,13 @@
       </div>
     </div>
     <div>
+      <div v-for="email in userStore.emails" :key="email">
       <MessageRow
-        from="john.doe@gmail.com"
-        subject="Test row 1"
-        body="this is the body text"
+        :from="email.fromEmail"
+        :subject="email.subject"
+        :body="email.body"
         time="July 20 15:15"
-      />
+      /></div>
     </div>
   </div>
 </template>
@@ -27,4 +31,10 @@
 <script setup>
 import IconComponent from "@/components/IconComponent.vue";
 import MessageRow from "@/components/MessageRow.vue";
+import { onMounted } from "vue";
+import { useUserStore } from "@/store/user-store";
+const userStore = useUserStore();
+onMounted(() => {
+  userStore.getEmailsByEmailAddress();
+});
 </script>

@@ -24,7 +24,7 @@
       class="absolute z-10 w-80 right-2 bg-white top-14 rounded-lg custom-shadow"
     >
       <div class="w-full flex justify-center">
-        <img class="rounded-full w-20 mt-4" :src="img" />
+        <img class="rounded-full w-20 mt-4" :src="userStore.picture" />
       </div>
       <div class="text-gray-700 w-full flex justify-center mt-2 text-lg">
         {{ userStore.firstName }} {{ userStore.lastName }}
@@ -50,12 +50,21 @@ import { ref } from "vue";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "vue-router";
 const userStore = useUserStore();
-const router=useRouter();
+const router = useRouter();
 let openMenu = ref(false);
-const logout=()=>{
+const logout = () => {
   userStore.clearUser();
- setTimeout(() => {
-  router.push('/');
- }, 350);
-}
+  setTimeout(() => {
+    router.push("/");
+  }, 350);
+};
 </script>
+<style lang="scss">
+#UserComponent {
+  .custom-shadow {
+    box-shadow: -1px 1px 6px -2px rgba(36, 36, 36, 0.38);
+    -webkit-box-shadow: -1px 1px 6px -2px rgba(36, 36, 36, 0.38);
+    -moz-box-shadow: -1px 1px 6px -2px rgba(36, 36, 36, 0.38);
+  }
+}
+</style>
