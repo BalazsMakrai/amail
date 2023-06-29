@@ -1,19 +1,14 @@
 <template>
   <div id="MessageRow">
-    <div
-      class="border-b hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x cursor-pointer"
-    >
+    <div class="border-b hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x cursor-pointer"
+      :class="[hasViewed ? 'bg-gray-200' : '']">
       <div class="flex items-center px-4 py-2">
         <div class="flex items-center">
-          <component
-            :is="CheckboxBlankOutlineIcon"
-            :size="19"
-            fillcolor="#636363"
-          />
+          <component :is="CheckboxBlankOutlineIcon" :size="19" fillcolor="#636363" />
           <StarOutlineIcon class="ml-4" :size="19" fillcolor="#636363" />
         </div>
         <div class="flex items-center w-full">
-          <router-link to="email/message" class="w-full">
+          <router-link :to="`/email/message/${id}`" class="w-full">
             <div class="flex items-center justify-between">
               <div class="flex items-center w-full">
                 <div class="text-sm ml-4 font-semibold truncate-from">
@@ -23,16 +18,12 @@
                   <div class="text-sm mr-1.5 font-semibold truncate-subject">
                     {{ subject }}
                   </div>
-                  <div
-                    class="text-sm mr-1.5 font-semibold text-gray-500 truncate-body"
-                  >
+                  <div class="text-sm mr-1.5 font-semibold text-gray-500 truncate-body">
                     - {{ body }} ...
                   </div>
                 </div>
               </div>
-              <div
-                class="text-right truncate mr-4 w-full text-xs font-semibold"
-              >
+              <div class="text-right truncate mr-4 w-full text-xs font-semibold">
                 {{ time }}
               </div>
             </div>
@@ -49,12 +40,14 @@ import CheckboxBlankOutlineIcon from "vue-material-design-icons/CheckboxBlankOut
 import StarOutlineIcon from "vue-material-design-icons/StarOutline.vue";
 //let icon = null;
 const props = defineProps({
+  id: String,
   from: String,
   subject: String,
   body: String,
   time: String,
+  hasViewed: Boolean,
 });
-const { subject, from, body, time } = toRefs(props);
+const { subject, from, body, time, id, hasViewed } = toRefs(props);
 </script>
 <style lang="scss">
 #MessageRow {
@@ -63,11 +56,13 @@ const { subject, from, body, time } = toRefs(props);
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .truncate-subject {
     max-width: 200px;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .truncate-from {
     max-width: 300px;
     text-overflow: ellipsis;

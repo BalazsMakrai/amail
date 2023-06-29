@@ -1,7 +1,15 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { db } from "@/firebase-init";
-import { onSnapshot, query, where, collection } from "firebase/firestore";
+import { v4 as uuid } from "uuid";
+import {
+  onSnapshot,
+  query,
+  where,
+  collection,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 axios.defaults.baseURL = "http://localhost:4001/";
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -59,6 +67,22 @@ export const useUserStore = defineStore("user", {
           console.log(error);
         }
       );
+    },
+    async sendEmail(data) {
+      try {
+        await setDoc(doc(db, "emails/" + uuid()), {
+          firstName: this.$state.firstName,
+          lastName: this.$state.lastName,
+          fromEmail: this.$state.email,
+          toEmail: data.toEmail,
+          subject: data.subject,
+          body: data.body,
+          hasViewed: false,
+          createdAt: Date.now(),
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   persist: true,

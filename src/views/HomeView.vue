@@ -18,12 +18,15 @@
     </div>
     <div>
       <div v-for="email in userStore.emails" :key="email">
-      <MessageRow
-        :from="email.fromEmail"
-        :subject="email.subject"
-        :body="email.body"
-        time="July 20 15:15"
-      /></div>
+        <MessageRow
+          :id="email.id"
+          :from="email.fromEmail"
+          :subject="email.subject"
+          :body="email.body"
+          :hasViewed="email.hasViewed"
+          time="July 20 15:15"
+        />
+      </div>
     </div>
   </div>
 </template>
