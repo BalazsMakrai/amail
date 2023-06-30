@@ -103,10 +103,8 @@
         </div>
       </div>
       <div class="w-full">
-        <!--this is where the page changes-->
-        <router-view />
-        <!--this is where the page changes-->
-      </div>
+            <router-view />
+             </div>
       <div class="m-4">
         <div class="w-6 h-6 flex justify-center mb-7">
           <img class="object-center" src="img/GoogleCalendar.png" />
@@ -207,10 +205,10 @@ const sendEmail = async () => {
     subject: subject.value,
     body: body.value,
   });
-  newMessageOpen = false;
-  toEmail = "";
-  subject = "";
-  body = "";
+  newMessageOpen.value = false;
+  toEmail.value = "";
+  subject.value = "";
+  body.value = "";
 };
 </script>
 <style scoped>

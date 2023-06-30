@@ -2,7 +2,7 @@
   <div id="MessageRow">
     <div
       class="border-b hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x cursor-pointer"
-      :class="[hasViewed ? 'bg-gray-200' : '']"
+      :class="[hasViewed ? '' : 'bg-gray-200']"
     >
       <div class="flex items-center px-4 py-2">
         <div class="flex items-center">
@@ -18,11 +18,17 @@
           <router-link :to="`/email/message/${id}`" class="w-full">
             <div class="flex items-center justify-between">
               <div class="flex items-center w-full">
-                <div class="text-sm ml-4 font-semibold truncate-from">
+                <div
+                  class="text-sm ml-4 truncate-from"
+                  :class="[hasViewed ? 'font-normal' : 'font-bold']"
+                >
                   {{ from }}
                 </div>
                 <div class="flex items-center justify-between">
-                  <div class="text-sm mr-1.5 font-semibold truncate-subject">
+                  <div
+                    class="text-sm mr-1.5 truncate-subject"
+                    :class="[hasViewed ? 'font-normal' : 'font-bold']"
+                  >
                     {{ subject }}
                   </div>
                   <div
@@ -33,7 +39,8 @@
                 </div>
               </div>
               <div
-                class="text-right truncate mr-4 w-full text-xs font-semibold"
+                class="text-right truncate mr-4 w-full text-xs"
+                :class="[hasViewed ? 'font-normal' : 'font-bold']"
               >
                 {{ time }}
               </div>

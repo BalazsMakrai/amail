@@ -42,7 +42,7 @@ export const useUserStore = defineStore("user", {
       this.$state.picture = null;
       this.$state.firstName = null;
       this.$state.lastName = null;
-      this.$state.email = [];
+      this.$state.emails = [];
     },
     getEmailsByEmailAddress() {
       const q = query(

@@ -1,7 +1,6 @@
 <template>
   <div id="LoginView" class="grid h-screen place-items-center">
     <div>
-      {{ userStore }}
       <img width="280" src="img/GmailLogin.png" />
       <div class="flex justify-center mt-5">
         <GoogleLogin :callback="callback" />

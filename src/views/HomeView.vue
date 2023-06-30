@@ -1,9 +1,9 @@
 <template>
   <div
     id="HomeView"
-    class="w-full bg-white ml-2 rounded-t-xl h-full shadow-sm pt-2"
+    class="w-full bg-white ml-2 rounded-t-xl h-full shadow-sm pt-2" v-if="userStore.emails.length"
   >
-    <div class="border-b">
+    <div class="border-b" >
       <div class="flex items-center justify-between px-4 my-3">
         <IconComponent
           @click="deleteSelected"
@@ -31,6 +31,7 @@
       </div>
     </div>
   </div>
+  <div v-else class="flex items-center justify-center w-full h-full text-3xl">Sorry, nothing to show here...</div>
 </template>
 
 <script setup>
