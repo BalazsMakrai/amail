@@ -61,16 +61,18 @@ import IconComponent from "@/components/IconComponent.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/user-store";
 import { onMounted, ref } from "vue";
+import moment from "moment/moment";
 const userStore = useUserStore();
 const router = useRouter();
 const route = useRoute();
 let email = ref({});
 onMounted(async () => {
   const res = await userStore.getEmailById(route.params.id);
+  await userStore.emailHasBeenViewed(res.id);
   email.value = {
     id: res.id,
     body: res.body,
-    createdAt: res.createdAt,
+    createdAt: moment(res.createdAt).format("MMM D HH:mm"),
     firstName: res.firstName,
     lastName: res.lastName,
     subject: res.subject,

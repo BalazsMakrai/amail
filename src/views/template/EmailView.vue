@@ -72,7 +72,9 @@
               <InboxIcon :size="17" />
               <div class="text-sm pl-4 font-semibold">Inbox</div>
             </div>
-            <div class="text-xs font-semibold">26</div>
+            <div class="text-xs font-semibold">
+              {{ userStore.emails.length }}
+            </div>
           </div></router-link
         >
         <div class="flex justify-between px-6 py-1.5">
@@ -205,10 +207,10 @@ const sendEmail = async () => {
     subject: subject.value,
     body: body.value,
   });
-  newMessageOpen = false
+  newMessageOpen = false;
   toEmail = "";
-  subject =  "";
-  body =  "";
+  subject = "";
+  body = "";
 };
 </script>
 <style scoped>
