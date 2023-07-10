@@ -27,6 +27,7 @@ import HelpIcon from "vue-material-design-icons/Help.vue";
 import CogOutlineIcon from "vue-material-design-icons/CogOutline.vue";
 import AppsIcon from "vue-material-design-icons/Apps.vue";
 import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
+import CloseCircleOutlineIcon from "vue-material-design-icons/CloseCircleOutline";
 import TrashCanOutlineIcon from "vue-material-design-icons/TrashCanOutline.vue";
 let icon = null;
 const props = defineProps({
@@ -53,5 +54,7 @@ if (iconString.value === "menu") {
   icon = ArrowLeftIcon;
 } else if (iconString.value === "trash") {
   icon = TrashCanOutlineIcon;
+} else if (iconString.value === "close") {
+  icon = CloseCircleOutlineIcon;
 }
 </script>

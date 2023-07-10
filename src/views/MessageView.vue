@@ -26,7 +26,6 @@
               text="Delete"
             />
           </div>
-          <div class="text-xs text-gray-500">1-50 of 153</div>
         </div>
       </div>
       <div class="w-full text-xl ml-20 font-light pt-5">

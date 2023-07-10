@@ -29,12 +29,24 @@ export const useUserStore = defineStore("user", {
       let res = await axios.post("api/google-login", {
         token: data.credential,
       });
-      console.log(res);
       this.$state.sub = res.data.sub;
       this.$state.email = res.data.email;
       this.$state.picture = res.data.picture;
       this.$state.firstName = res.data.given_name;
       this.$state.lastName = res.data.family_name;
+    },
+    searchEmail(query) {
+      if (query.length == 0) {
+        this.getEmailsByEmailAddress();
+      } else {
+        let tempEmails = [...this.$state.emails];
+        this.$state.emails = [];
+        for (let email of tempEmails) {
+          if (email.body.toLowerCase().includes(query.toLowerCase())) {
+            this.$state.emails.push(email);
+          }
+        }
+      }
     },
     clearUser() {
       this.$state.sub = null;
@@ -120,7 +132,9 @@ export const useUserStore = defineStore("user", {
       try {
         await setDoc(
           doc(db, "emails/", id),
-          { hasViewed: true },
+          {
+            hasViewed: true,
+          },
           { merge: true }
         );
       } catch (error) {

@@ -14,7 +14,6 @@
           hoverColor="hover:bg-gray-200"
           text="Delete selected"
         />
-        <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
     </div>
     <div>

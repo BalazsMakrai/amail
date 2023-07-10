@@ -23,16 +23,28 @@
             hoverColor="hover:bg-gray-200"
             text="Search"
           /><input
+            @input="searchEmails"
+            v-model="query"
             placeholder="Search mail"
             type="text"
             class="w-full h-10 bg-gray-200 border-transparent border-none focus:ring-0 outline-none placeholder-gray-900"
           />
           <IconComponent
+            v-show="query.length == 0"
             iconString="tune"
             iconColor="#636363"
             :iconSize="19"
             hoverColor="hover:bg-gray-200"
             text="Show search options"
+          />
+          <IconComponent
+            v-show="query.length > 0"
+            @click="emptyQuery"
+            iconString="close"
+            iconColor="#636363"
+            :iconSize="19"
+            hoverColor="hover:bg-gray-200"
+            text="Clear field"
           />
         </div>
         <div class="flex w-32 justify-between items-center ml-6">
@@ -72,11 +84,11 @@
               <InboxIcon :size="17" />
               <div class="text-sm pl-4 font-semibold">Inbox</div>
             </div>
-            <div class="text-xs font-semibold">
-              {{ userStore.emails.length }}
+            <div class="text-xs font-semibold" v-if="cnt > 0">
+              {{ cnt }}
             </div>
-          </div></router-link
-        >
+          </div>
+        </router-link>
         <div class="flex justify-between px-6 py-1.5">
           <div class="flex items-center">
             <StarOutlineIcon :size="17" />
@@ -103,8 +115,8 @@
         </div>
       </div>
       <div class="w-full">
-            <router-view />
-             </div>
+        <router-view />
+      </div>
       <div class="m-4">
         <div class="w-6 h-6 flex justify-center mb-7">
           <img class="object-center" src="img/GoogleCalendar.png" />
@@ -180,7 +192,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useUserStore } from "@/store/user-store";
 import IconComponent from "../../components/IconComponent.vue";
 import UserComponent from "../../components/UserComponent.vue";
@@ -198,6 +210,16 @@ let newMessageOpen = ref(false);
 let toEmail = ref("");
 let subject = ref("");
 let body = ref("");
+let query = ref("");
+let cnt = computed(() => {
+  let count = 0;
+  for (let email of userStore.emails) {
+    if (!email.hasViewed) {
+      count++;
+    }
+  }
+  return count;
+});
 
 const sendEmail = async () => {
   await userStore.sendEmail({
@@ -209,6 +231,14 @@ const sendEmail = async () => {
   toEmail.value = "";
   subject.value = "";
   body.value = "";
+};
+const emptyQuery = () => {
+  query.value = "";
+  userStore.searchEmail(query.value);
+};
+const searchEmails = () => {
+  console.log("dddd");
+  userStore.searchEmail(query.value);
 };
 </script>
 <style scoped>
@@ -227,6 +257,7 @@ const sendEmail = async () => {
 .side-menu {
   width: 300px;
 }
+
 #NewMessageSection {
   width: 560px;
   height: 570px;
