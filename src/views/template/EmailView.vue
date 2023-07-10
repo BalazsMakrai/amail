@@ -237,7 +237,6 @@ const emptyQuery = () => {
   userStore.searchEmail(query.value);
 };
 const searchEmails = () => {
-  console.log("dddd");
   userStore.searchEmail(query.value);
 };
 </script>

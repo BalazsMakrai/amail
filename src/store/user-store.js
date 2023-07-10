@@ -23,6 +23,7 @@ export const useUserStore = defineStore("user", {
     firstName: "",
     lastName: "",
     emails: [],
+    pina: [],
   }),
   actions: {
     async getUserDetailsFromGoogle(data) {
@@ -37,12 +38,17 @@ export const useUserStore = defineStore("user", {
     },
     searchEmail(query) {
       if (query.length == 0) {
-        this.getEmailsByEmailAddress();
+        this.$state.emails = [...this.$state.pina];
       } else {
-        let tempEmails = [...this.$state.emails];
+        let emailHelper = [...this.$state.pina];
         this.$state.emails = [];
-        for (let email of tempEmails) {
-          if (email.body.toLowerCase().includes(query.toLowerCase())) {
+        for (let email of emailHelper) {
+          if (
+            email.body.toLowerCase().includes(query.toLowerCase()) ||
+            email.subject.toLowerCase().includes(query.toLowerCase()) ||
+            email.firstName.toLowerCase().includes(query.toLowerCase()) ||
+            email.lastName.toLowerCase().includes(query.toLowerCase())
+          ) {
             this.$state.emails.push(email);
           }
         }
@@ -80,6 +86,7 @@ export const useUserStore = defineStore("user", {
             });
           });
           this.$state.emails = resultArray;
+          this.$state.pina = resultArray;
         },
         (error) => {
           console.log(error);
