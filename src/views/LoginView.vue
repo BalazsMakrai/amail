@@ -1,6 +1,5 @@
 <template>
   <div id="LoginView" class="grid h-screen place-items-center">
-    Welcome!
     <div>
       <img width="280" src="img/GmailLogin.png" />
       <div class="flex justify-center mt-5">
